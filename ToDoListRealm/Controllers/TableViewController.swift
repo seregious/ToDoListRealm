@@ -6,6 +6,7 @@
 //
 
 import RealmSwift
+import UIKit
 
 class TableViewController: UITableViewController {
     
@@ -24,7 +25,7 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskID", for: indexPath)
         let task = taskList[indexPath.row]
         var content = cell.defaultContentConfiguration()
         content.text = task.name
@@ -33,54 +34,37 @@ class TableViewController: UITableViewController {
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        guard let indexPath = tableView.indexPathForSelectedRow else {return}
+        guard let taskVC = segue.destination as? TaskViewController else {return}
+        let task = taskList[indexPath.row]
+        taskVC.task = task
     }
-    */
 
     private func createTempData() {
         DataManager.shared.createTempData {
             self.tableView.reloadData()
         }
+    }
+    
+}
+
+extension TableViewController {
+    private func showAlert() {
+        let alert = UIAlertController.createAlert(title: "New list", massage: "Please type the list name")
+        
+        alert.acton {list in
+            self.save(list)
+        }
+        
+        present(alert, animated: true)
+        
+    }
+    
+    private func save(_ taskList: String) {
+        let taskList = TaskList(value: [taskList])
+        StorageManager.shared.save(taskList)
+        let rowIndex = IndexPath(row: taskList.index(of: taskList) ?? 0, section: 0)
+        tableView.insertRows(at: [rowIndex], with: .automatic)
     }
 }

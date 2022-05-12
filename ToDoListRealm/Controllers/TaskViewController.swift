@@ -1,45 +1,49 @@
 //
-//  TaskViewController.swift
+//  TasksViewController.swift
 //  ToDoListRealm
 //
 //  Created by Сергей Иванчихин on 12.05.2022.
 //
 
-import UIKit
+import RealmSwift
 
 class TaskViewController: UITableViewController {
+    
+    var task: TaskList!
+    
+    private var currentTask: Results<Task>!
+    private var completedTasks: Results<Task>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = task.name
+        currentTask = task.tasks.filter("isComplete = false")
+        completedTasks = task.tasks.filter("isComplete = true")
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        section == 0 ? currentTask.count : completedTasks.count
     }
-
-    /*
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        section == 0 ? "Current tasks" : "Completed tasks"
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let task = indexPath.section == 0 ? currentTask[indexPath.row] : completedTasks[indexPath.row]
+        var content = cell.defaultContentConfiguration()
+        content.text = task.name
+        content.secondaryText = task.note
+        cell.contentConfiguration = content
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

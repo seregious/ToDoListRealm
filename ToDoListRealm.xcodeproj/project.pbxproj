@@ -17,7 +17,7 @@
 		A3498B6F282AEF0D00247396 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3498B6E282AEF0D00247396 /* StorageManager.swift */; };
 		A3498B71282AF07C00247396 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3498B70282AF07C00247396 /* TableViewController.swift */; };
 		A3498B72282AF3F400247396 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3498B67282AE1CD00247396 /* Main.storyboard */; };
-		A3498B75282D1CDA00247396 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3498B74282D1CDA00247396 /* TaskViewController.swift */; };
+		A3498B79282D22F800247396 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3498B78282D22F800247396 /* TaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +35,7 @@
 		A3498B6C282AEBAE00247396 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A3498B6E282AEF0D00247396 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		A3498B70282AF07C00247396 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		A3498B74282D1CDA00247396 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		A3498B78282D22F800247396 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				A3498B70282AF07C00247396 /* TableViewController.swift */,
-				A3498B74282D1CDA00247396 /* TaskViewController.swift */,
+				A3498B78282D22F800247396 /* TaskViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -244,7 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3498B6A282AE9AD00247396 /* TaskList.swift in Sources */,
-				A3498B75282D1CDA00247396 /* TaskViewController.swift in Sources */,
+				A3498B79282D22F800247396 /* TaskViewController.swift in Sources */,
 				A3498B71282AF07C00247396 /* TableViewController.swift in Sources */,
 				A3498B6D282AEBAE00247396 /* DataManager.swift in Sources */,
 				A3498B6F282AEF0D00247396 /* StorageManager.swift in Sources */,
